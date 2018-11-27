@@ -19,4 +19,8 @@ class Members(UserMixin, db.Model):
     lastname = db.Column(db.String(25))
     birthday = db.Column(db.String(25))
     gender = db.Column(db.String(1))
-    capital = db.Column(db.Integer)
+    
+
+class Collection(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    capital = db.Column(db.Integer())

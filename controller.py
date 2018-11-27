@@ -15,9 +15,9 @@ db = SQLAlchemy(app)
 
 
 def createDB():
-    engine = sqlalchemy.create_engine('mysql://root:password@localhost')# connects to server
-    engine.execute("CREATE DATABASE IF NOT EXISTS testdb") #create db
-    engine.execute("USE testdb3") # select new
+    engine = sqlalchemy.create_engine('mysql://root:password@localhost') #connects to server
+    engine.execute("CREATE DATABASE IF NOT EXISTS testdb3") #create db
+    engine.execute("USE testdb3") #select new
 
 def createTables():
     db.create_all()

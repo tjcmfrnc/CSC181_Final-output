@@ -1,2 +1,61 @@
-<h1>Sorry You can no longer sign-up! </h1>
+{% extends "bootstrap/base.html" %}
+{% block title %} Sign Up {% endblock %}
 
+{% block metas %}
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="static/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link rel="stylesheet" href="static/css/all.css">
+<link rel="stylesheet" href="static/css/all.min.css">
+<link rel="stylesheet" href="static/css/magnific-popup.css">
+<link rel="stylesheet" href="static/css/css.css">
+<link rel="stylesheet" href="static/css/css2.css">
+{{ super() }}
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="static/css/error.css">
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="{{url_for('index')}}">Savings System</a>
+    <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item mx-0 mx-lg-1">
+          <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{{url_for('index')}}"><i class="fas fa-home"></i> Back to Home</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="text-center">	
+	<h2 style="font-size: 60px"><strong>Sorry! You can no longer sign up.</strong></h2>
+	<br>
+	<h3>An Admin account has already been created.</h3>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+{{ super() }}
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/bootstrap.bundle.min.js"></script>
+<script src="static/js/jquery.easing.min.js"></script>
+<script src="static/js/jquery.magnific-popup.min.js"></script>
+<script src="static/js/jqBootstrapValidation.js"></script>
+<script src="static/js/contact_me.js"></script>
+<script src="static/js/freelancer.min.js"></script>
+{% endblock %}

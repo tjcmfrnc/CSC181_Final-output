@@ -75,14 +75,13 @@ def addmember():
         lname = form.lastname.data
         Member = Members.query.filter_by(firstname=fname, middlename=mname, lastname=lname, birthday = form.birthday.data, gender = form.gender.data).first()
         if Member is None:
-
-            new_member = Members(firstname=fname, middlename=mname, lastname=lname, birthday = form.birthday.data, gender = form.gender.data, capital = form.capital.data)
+            new_member = Members(firstname=fname, middlename=mname, lastname=lname, birthday = form.birthday.data, gender = form.gender.data)
             db.session.add(new_member)
             db.session.commit()
-            flash('member created successfully!')
+            flash('Member Created Successfully!')
             return render_template('adminhomepage.html', form=form)
         else:
-            flash('member already exist!')
+            flash('Member Already Exist!')
 
     return render_template('addmember.html', form=form)
 
@@ -99,9 +98,25 @@ def members():
     total = 0
     t = 0
     for member in members:
-        total += member.capital
         t += member.id
     return render_template('members.html', name=current_user.username,members=members, total=total, t=t)
+
+@app.route('/add_collection', methods=['GET','POST'])
+@login_required
+def collection():
+    form = CollectionForm()
+
+    # if form.validate_on_submit():
+    if request.method == 'POST':
+        # print"wizzzzzzzzzzzzzzzzzzz"
+        capital = form.capital.data
+        # print str(capital)+"----------------------------------------------"
+        new_capital = Collection(capital=capital)
+        db.session.add(new_capital)
+        db.session.commit()
+        flash('Capital Added!')
+        return render_template('adminhomepage.html')  
+    return render_template('add_collection.html', form=form)
 
 @app.route('/logout')
 @login_required
