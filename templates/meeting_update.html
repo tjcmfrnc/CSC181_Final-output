@@ -1,0 +1,44 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Update Meeting
+{% endblock %}
+
+{% block styles %}
+    <link href="/static/bootstrap1.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/mainstyle.css">
+    <link href="/static/forms.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='buddy.ico') }}" type="image/x-icon">
+{% endblock %}
+
+{% block content %}
+    {% include "adminbar.html" %}
+    {% with msg = get_flashed_messages() %}
+
+<ol class="breadcrumb" id="form-breadcrumbs">
+    <li class="breadcrumb-item"><a href="/adminhomepage">Home</a></li>
+    <li class="breadcrumb-item"><a href="/meeting">Meeting</a></li>
+    <li class="breadcrumb-item">Update Meeting Info</li>
+</ol>
+
+    <div class="container">
+    <div class="wrapper">
+    <div class="form-signin">
+        <h3 class="form-signin-heading">Update Meeting Info</h3>
+    <form class="form form-horizontal" action="{{ url_for('updatemeeting', meetingid=meetingid) }}" method="POST" role="form">
+    <dl>
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        {{ wtf.form_field(form.meetingName, placeholder="Update name") }}
+    </dl>
+    <input class="btn btn-success btn-block" type="submit" value="Update">
+    <input class="btn btn-primary btn-block" type="button" value="Back" onclick="window.location.href='javascript:history.back()'">
+    </form>
+
+    </div>
+    </div>
+    </div>
+    {% endwith %}
+{% endblock %}

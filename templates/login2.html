@@ -1,0 +1,55 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block styles %}
+    <link href="/static/bootstrap1.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/mainstyle.css">
+    <link href="/static/forms.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='buddy.ico') }}" type="image/x-icon">
+{% endblock %}
+{% block scripts %}
+script>#}
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+<script type="text/javascript">
+    {% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+      $(document).ready(function(){
+        alert("{{ message }}");
+    });
+         
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+    
+</script>
+{% endblock %}
+
+
+{% block content %}
+    <div class="form-signin" style="margin-bottom: 18%">
+        <h3 class="form-signin-heading">Login Admin</h3>
+    <form class="form form-horizontal" action="{{ url_for('login2')}}" method="POST" role="form">
+    <dl>
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.username, placeholder = "Admin") }}
+        {{ wtf.form_field(form.password, placeholder = "password") }}
+    </dl>
+    <input class="btn btn-success btn-block" type="submit" value="Log in">
+    <input class="btn btn-primary btn-block" type="button" value="Home" onclick="window.location.href='/'">
+    </form>
+
+    </div>
+    </div>
+    </div>
+  
+{% endblock %}

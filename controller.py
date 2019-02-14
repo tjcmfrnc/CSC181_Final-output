@@ -8,16 +8,16 @@ import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Thisissupposedtobesecret!'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@localhost/testdb3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@localhost/testdb'
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 
 
 
 def createDB():
-    engine = sqlalchemy.create_engine('mysql://root:password@localhost') #connects to server
-    engine.execute("CREATE DATABASE IF NOT EXISTS testdb3") #create db
-    engine.execute("USE testdb3") #select new
+    engine = sqlalchemy.create_engine('mysql://root:password@localhost')# connects to server
+    engine.execute("CREATE DATABASE IF NOT EXISTS testdb") #create db
+    engine.execute("USE testdb") # select new
 
 def createTables():
     db.create_all()

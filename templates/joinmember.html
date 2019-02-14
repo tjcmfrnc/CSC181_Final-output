@@ -1,0 +1,57 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Contribute
+{% endblock %}
+
+{% block styles %}
+    <link href="/static/bootstrap1.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/mainstyle.css">
+    <link href="/static/forms.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='buddy.ico') }}" type="image/x-icon">
+{% endblock %}
+
+
+{% block content %}
+    {% include "adminbar.html" %}
+<ol class="breadcrumb" id="form-breadcrumbs">
+    <li class="breadcrumb-item"><a href="/adminhomepage">Home</a></li>
+    <li class="breadcrumb-item"><a href="/joinmember">Contribute</a></li>
+</ol>
+{% with msg = get_flashed_messages() %}
+    {% if msg %}
+        {% for alert in msg %}
+            <div class="messages">
+            <div class="col-sm-6 col-md-6">
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                <span class="glyphicon glyphicon-info-sign"></span><strong>{{ alert }}</strong>
+            </div>
+        </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="container">
+    <div class="wrapper">
+    <div class="form-signin" style="margin-top: 5%">
+        <h3 class="form-signin-heading">Contribute</h3>
+    <form class="form form-horizontal" action="{{ url_for('joinmember') }}" method="POST" role="form">
+    <dl>
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        {{ wtf.form_field(form.memid, placeholder="Name your ID number") }}
+        
+        {{ wtf.form_field(form.capital) }}
+    </dl>
+    <input class="btn btn-success btn-block" type="submit" value="Activate">
+    <input class="btn btn-primary btn-block" type="button" value="Back" onclick="window.location.href='javascript:history.back()'">
+    </form>
+
+    </div>
+    </div>
+    </div>
+    {% endwith %}
+{% endblock %}

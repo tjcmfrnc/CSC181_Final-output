@@ -1,0 +1,66 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+New Member
+{% endblock %}
+
+{% block styles %}
+    <link href="/static/bootstrap1.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/mainstyle.css">
+    <link href="/static/forms.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='buddy.ico') }}" type="image/x-icon">
+{% endblock %}
+
+{% block scripts %}
+script>#}
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+<script type="text/javascript">
+    {% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+      $(document).ready(function(){
+        alert("{{ message }}");
+    });
+         
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+    
+</script>
+{% endblock %}
+
+
+{% block content %}
+    {% include "adminbar.html" %}
+<ol class="breadcrumb" id="form-breadcrumbs">
+    <li class="breadcrumb-item"><a href="/adminhomepage">Home</a></li>
+    <li class="breadcrumb-item"><a href="/member">Members</a></li>
+    <li class="breadcrumb-item">New Member</li>
+</ol>
+
+    <div class="container">
+    <div class="wrapper">
+    <div class="form-signin" style="margin-top: 5%">
+        <h3 class="form-signin-heading">New Member</h3>
+    <form class="form form-horizontal" action="{{ url_for('addmember3') }}" method="POST" role="form">
+    <dl>
+        {{ form.hidden_tag() }}
+    {{ wtf.form_field(form.memberid, placeholder='TIN-ID') }}
+    {{ wtf.form_field(form.firstname) }}
+    {{ wtf.form_field(form.middlename) }}
+    {{ wtf.form_field(form.lastname) }}
+    {{ wtf.form_field(form.gender) }}
+    <input class="btn btn-primary btn-block" type="submit" value="Submit" />
+    <input class="btn btn-primary btn-block" type="button" value="Back" onclick="window.location.href='javascript:history.back()'">
+    </form>
+
+    </div>
+    </div>
+    </div>
+{% endblock %}

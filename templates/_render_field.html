@@ -1,0 +1,25 @@
+{% macro render_username_field(field) %}
+<div class="md-form mb-5">
+	<i class="fas fa-user prefix grey-text"></i>
+    {{ field(class_='form-control', **kwargs)|safe }}
+    <ul>
+    {% for error in field.errors %}
+    	<li style="color:red;">{{ error }}</li>
+    {% endfor %}
+    </ul>
+    <label data-error="wrong" data-success="right" for="{{ field.name }}">{{ field.label.text }}</label>
+</div>
+{% endmacro %}
+
+{% macro render_password_field(field) %}
+<div class="md-form mb-5">
+	<i class="fas fa-lock prefix grey-text"></i>
+    {{ field(class_='form-control', **kwargs)|safe }}
+    <ul>
+    {% for error in field.errors %}
+    	<li style="color:red;">{{ error }}</li>
+    {% endfor %}
+    </ul>
+    <label data-error="wrong" data-success="right" for="{{ field.name }}">{{ field.label.text }}</label>
+</div>
+{% endmacro %}

@@ -1,46 +1,11 @@
-{% extends "bootstrap/base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'adminhomepage.html' %}
 
 
-{% block title %}
-Admin Home
-{% endblock %}
-
-{% block styles %}
-    <link href="/static/bootstrap1.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/bootstrap.css">
-    <link rel="stylesheet" href="/static/mainstyle.css">
-    <link rel="stylesheet" href="/static/jquery.dataTables.min.css">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='buddy.ico') }}" type="image/x-icon">
-{% endblock %}
-
-{% block metas %}
-   <meta charset='utf-8'>
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-{% endblock %}
-
-{% block scripts %}
-<script type="text/javascript">
-    {% with messages = get_flashed_messages() %}
-   {% if messages %}
-      {% for message in messages %}
-      $(document).ready(function(){
-        alert("{{ message }}");
-    });
-         
-      {% endfor %}
-   {% endif %}
-{% endwith %}
-    
-</script>
-{% endblock %}
 
 {% block content %}
-{% include "adminbar.html" %}
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/adminhomepage">Home</a></li>
-    <h1 style="font-family: sans-serif; text-align: center; text-shadow: 3px 3px 5px #adb4b6;" id="adminmsg">{{ msgs }}<br>Welcome to the Admin Homepage!</h1>
+      <h1 style="font-family: sans-serif; text-align: center; text-shadow: 3px 3px 5px #adb4b6;" id="adminmsg">{{ msgs }}<br>Welcome to the Admin Homepage!</h1>
     <div id="quickbois">
         <a id="make-payment" class="btn btn-primary" href="/payment"><span><i class="glyphicon glyphicon-piggy-bank" style="margin-right:0.5em"></i><br>Make a payment</span></a>
         <a id="add-event" class="btn btn-primary" href="/newmeeting"><span><i class="glyphicon glyphicon-calendar" style="margin-right:0.5em"></i><br>Add a meeting</span></a>
@@ -49,8 +14,6 @@ Admin Home
         <a id="add-collection" class="btn btn-primary" href="/joinmember"><span><i class="glyphicon glyphicon-usd" style="margin-right:0.5em"></i><br>Add a Contribution</span></a>
         <a id="deactivate-students" class="btn btn-primary" href="/addmember3"><span><i class="glyphicon glyphicon-user" style="margin-right:0.5em"></i><br>Add a member</span></a>
     </div>
-
-
 
 
 {% endblock %}

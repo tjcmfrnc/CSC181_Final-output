@@ -1,0 +1,31 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Remove Meeting
+{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link href="/static/meeting.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='buddy.ico') }}" type="image/x-icon">
+{% endblock %}
+
+{% block content %}
+    {% with msg = get_flashed_messages() %}
+<h1>Delete a Meeting</h1>
+        <h3> {{ msgs }} </h3>
+    <div class="input-meeting">
+    <form class="form form-horizontal" action="{{ url_for('deletemeeting', meetingid=meetingid) }}" method="POST" role="form">
+    <dl>
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        {{ wtf.form_field(form.meetingid, placeholder="Enter event ID") }}
+    </dl>
+    <input class="btn btn-success" type="submit" value="Remove">
+    <input class="btn btn-primary" type="button" value="Back" onclick="window.location.href='/meeting'">
+    </form>
+    </div>
+
+    {% endwith %}
+{% endblock %}

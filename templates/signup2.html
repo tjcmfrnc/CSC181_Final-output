@@ -1,0 +1,40 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+First time Setup
+{% endblock %}
+
+{% block styles %}
+    <link href="/static/bootstrap1.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/mainstyle.css">
+    <link href="/static/forms.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='buddy.ico') }}" type="image/x-icon">
+{% endblock %}
+
+
+{% block content %}
+{% with msg = get_flashed_messages() %}
+
+    <div class="container">
+    <div class="wrapper">
+    <div class="form-signin" style="margin-top: 1%">
+        <h3 class="form-signin-heading">First time Setup</h3>
+    <form class="form form-horizontal" action="{{ url_for('signup2')}}" method="POST" role="form">
+    <dl>
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.orgName)}}
+        {{ wtf.form_field(form.orgCode, placeholder='minimum of 4 character organization code')}}
+        {{ wtf.form_field(form.username, placeholder='User Name') }}
+        {{ wtf.form_field(form.password, placeholder='Password') }}
+    </dl>
+    <input class="btn btn-success btn-block" type="submit" value="Create">
+    <input class="btn btn-primary btn-block" type="button" value="Home" onclick="window.location.href='/'">
+    </form>
+
+    </div>
+    </div>
+    </div>
+    {% endwith %}
+{% endblock %}

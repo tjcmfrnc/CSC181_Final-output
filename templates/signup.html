@@ -1,54 +1,43 @@
 {% extends "bootstrap/base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-{% block title %} Log In {% endblock %}
 
-{% block metas %}
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% block title %}
+First-Time Setup
 {% endblock %}
 
-{% block head %}
-<link rel="stylesheet" href="static/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<link rel="stylesheet" href="static/css/all.css">
-<link rel="stylesheet" href="static/css/all.min.css">
-<link rel="stylesheet" href="static/css/magnific-popup.css">
-<link rel="stylesheet" href="static/css/css.css">
-<link rel="stylesheet" href="static/css/css2.css">
-{{ super() }}
+{% block scripts %}
+    <script src="/static/addInput.js" language="Javascript" type="text/javascript"></script>
 {% endblock %}
 
 {% block styles %}
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">    
-<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/mainstyle.css">
+    <link href="/static/forms.css" rel="stylesheet">
+    <link href="/static/signup.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='buddy.ico') }}" type="image/x-icon">
 {% endblock %}
-
 
 {% block content %}
-<div class="text-center">
-  <img class="img-fluid" src="static/profile4.png" alt="">
-  <form class="form-signin" name="Login_Form" action="{{ url_for('signup')}}" method="POST" role="form" autocomplete="off">
-    <h3 class="form-signin-heading">Admin Set Up</h2>
-    {{ form.hidden_tag() }}
-        {{ wtf.form_field(form.firstname) }}
-        {{ wtf.form_field(form.middlename) }}
-        {{ wtf.form_field(form.lastname) }}
-        {{ wtf.form_field(form.username) }}
-        {{ wtf.form_field(form.password) }}
-    <button class="btn btn-lg btn-success btn-block" name="setup" value="Confirm" type="Submit">Confirm</button>
-    <a class="btn btn-lg btn-danger btn-block" href="{{url_for('index')}}"" role="button">Cancel</a>
-  </form>
-</div>  
+    <div class = "container">
+	<div class="wrapper1">
+
+    <form class="form-signup" name="Login_Form" action="{{ url_for('signup')}}" method="POST" role="form" autocomplete="off">
+        <h3 class="form-signin-heading">Admin Setup</h3>
+            <hr class="colorgraph"><br>
+        
+        <dl>
+            {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.orgName, placeholder='Organization Name')}}
+        {{ wtf.form_field(form.orgCode, placeholder='minimum of 4 character organization code')}}
+    	{{ wtf.form_field(form.username, placeholder='User Name') }}
+    	{{ wtf.form_field(form.password, placeholder='Password') }}
+        </dl>
+        <button class="btn btn-lg btn-success btn-block" name="setup" value="Confirm" type="Submit" style="margin-top: 5%">Confirm</button>
+        
+    </form>
+
+    </div>
+    </div>
+
+
 {% endblock %}
-
-
-{% block scripts %}
-{{ super() }}
-<script src="static/js/jquery.min.js"></script>
-<script src="static/js/bootstrap.bundle.min.js"></script>
-<script src="static/js/jquery.easing.min.js"></script>
-<script src="static/js/jquery.magnific-popup.min.js"></script>
-<script src="static/js/jqBootstrapValidation.js"></script>
-<script src="static/js/contact_me.js"></script>
-<script src="static/js/freelancer.min.js"></script>
-{% endblock %}
-

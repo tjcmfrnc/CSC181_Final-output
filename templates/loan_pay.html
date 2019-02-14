@@ -1,0 +1,50 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Validate Payment
+{% endblock %}
+
+{% block styles %}
+    <link href="/static/bootstrap1.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/mainstyle.css">
+    <link href="/static/forms.css" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='buddy.ico') }}" type="image/x-icon">
+{% endblock %}
+
+{% block content %}
+    {% include "adminbar.html" %}
+<ol class="breadcrumb" id="form-breadcrumbs">
+    <li class="breadcrumb-item"><a href="/adminhomepage">Home</a></li>
+    <li class="breadcrumb-item"><a href="/loan"></a></li>
+    <li class="breadcrumb-item"></li>
+</ol>
+            <div class="messages">
+                <div class="col-sm-6 col-md-6">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                    </button>
+                <span class=</strong>
+                    </div>
+                </div>
+            </div>
+
+    <div class="container">
+        <div class="wrapper">
+            <div class="form-signin"style="margin-bottom:10%">  
+        <h3 class="form-signin-heading">Validate Payment</h3>
+        <h6 style="text-align: center; font-style: italic">{{ msgs }}</h6>
+    <form class="form form-horizontal" action="{{ url_for('payloan', Loanid=Loanid) }}" method="POST" role="form">
+    <dl>
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        {{ wtf.form_field(form.attendtype) }}
+    </dl>
+    <input class="btn btn-success btn-block" type="submit" value="Confirm">
+    <input class="btn btn-primary btn-block" type="button" value="Back" onclick="window.location.href='javascript:history.back()'">
+    </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -2,7 +2,7 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}
-Collection
+Current User-Info
 {% endblock %}
 
 {% block styles %}
@@ -34,7 +34,7 @@ Collection
 {% include "adminbar.html" %}
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/adminhomepage">Home</a></li>
-    <li class="breadcrumb-item">Collection</li>
+    <li class="breadcrumb-item">User</li>
 </ol>
 {% with msg = get_flashed_messages() %}
     {% if msg %}
@@ -42,7 +42,7 @@ Collection
             <div class="messages">
             <div class="col-sm-6 col-md-6">
             <div class="alert alert-info">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">!</button>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                 <span class="glyphicon glyphicon-info-sign"></span><strong>{{ alert }}</strong>
             </div>
         </div>
@@ -51,41 +51,29 @@ Collection
     {% endif %}
 
 
-<div id="tables">
-<h1 style="font-family: sans-serif">Collection</h1>
+<div id="tables" style="margin-bottom: 10%">
+<h1 style="font-family: sans-serif">User-Info</h1>
     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead class="events">
             <tr>
-                <th>Collection Year</th>
-                <th>Date Created</th>
-                <th>Total Capital</th>
-                <th>Available</th>
-                <th>Payments</th>
-                <th>Current Loans</th>
-                <th>Collected Funds</th>
+                <th>User Name</th>
+                <th>Organization Name</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for collection in query %}
+        {% for user in user %}
+        {% for org in org %}
             <tr>
-                <td>{{ collection.colyear }}</td>
-                <td>{{ collection.coldate }}</td>
-                <td>{{total}}</td>
-                <td>{{capital2}}</td>
-                <td>{{total2}}.00</td>
-                <td>{{paid}}.00</td>
-                <td>{{revenue}}</td>
-
-                <td><a class="btn btn-outline-primary" href="{{ url_for('joinmember') }}"><i class="glyphicon glyphicon-file"></i>Join Member</a>
+                <td>{{ user.username }}</td>
+                <td>{{ org.orgName }}</td>
+                <td><a class="btn btn-outline-primary" href="{{ url_for('deleteuser', id=user.id) }}"><i class="glyphicon glyphicon-file"></i>Change User</a>
                 </td>
             </tr>
+            {% endfor %}
         {% endfor %}
         </tbody>
     </table>
-<div id="events">
-    <a id="eventbutt" class="btn btn-primary" href="/newcollection">Create Collection</a>
-    <a id="eventbutt" class="btn btn-primary" href="/pastcollection">Past Collection</a>
 </div>
 </div>
 

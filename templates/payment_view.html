@@ -2,7 +2,7 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}
-Collection
+View Payment
 {% endblock %}
 
 {% block styles %}
@@ -34,7 +34,7 @@ Collection
 {% include "adminbar.html" %}
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/adminhomepage">Home</a></li>
-    <li class="breadcrumb-item">Collection</li>
+    <li class="breadcrumb-item">Payments</li>
 </ol>
 {% with msg = get_flashed_messages() %}
     {% if msg %}
@@ -52,40 +52,30 @@ Collection
 
 
 <div id="tables">
-<h1 style="font-family: sans-serif">Collection</h1>
+<h1 style="font-family: sans-serif">Payment</h1>
     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead class="events">
             <tr>
-                <th>Collection Year</th>
-                <th>Date Created</th>
-                <th>Total Capital</th>
-                <th>Available</th>
-                <th>Payments</th>
-                <th>Current Loans</th>
-                <th>Collected Funds</th>
-                <th>Actions</th>
+                <th>Member ID</th>
+                <th>Transaction Details</th>
+                <th>Total Amount Paid</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
-        {% for collection in query %}
+        {% for payment in query %}
             <tr>
-                <td>{{ collection.colyear }}</td>
-                <td>{{ collection.coldate }}</td>
-                <td>{{total}}</td>
-                <td>{{capital2}}</td>
-                <td>{{total2}}.00</td>
-                <td>{{paid}}.00</td>
-                <td>{{revenue}}</td>
-
-                <td><a class="btn btn-outline-primary" href="{{ url_for('joinmember') }}"><i class="glyphicon glyphicon-file"></i>Join Member</a>
-                </td>
+                <td>{{ payment.loanerid }}</td>
+                <td>{{ payment.date }}</td>
+                <td>{{ payment.amountpaid }}</td>
+                <td>{{ payment.status }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 <div id="events">
-    <a id="eventbutt" class="btn btn-primary" href="/newcollection">Create Collection</a>
-    <a id="eventbutt" class="btn btn-primary" href="/pastcollection">Past Collection</a>
+    <a id="eventbutt" class="btn btn-primary" href="/newpayment">Quick Pay</a>
+    <a id="eventbutt" class="btn btn-primary" href="/pastcollection">Past Transactions</a>
 </div>
 </div>
 
